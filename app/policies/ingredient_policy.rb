@@ -7,8 +7,12 @@ class IngredientPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    create?
+  end
+
   def create?
-    true
+    @record.recipe.user_id == @user.id
   end
 
   def update?

@@ -22,8 +22,9 @@
     <a href="#" >Time: <%= @recipe.time %></a>
     <hr>
 
-    <%= link_to 'Add Ingredients', new_recipe_ingredient_path(@recipe.id), class: "btn btn-outline-primary mb-4" %>
-
+    <% if current_user.id == @recipe.user_id %>
+        <%= link_to 'Add Ingredients', new_recipe_ingredient_path(@recipe.id), class: "btn btn-outline-primary mb-4" %>
+    <% end %>
 <% if can_add_rating?  %>
     <div class="form-group">
         <h1>Add Rating</h1>

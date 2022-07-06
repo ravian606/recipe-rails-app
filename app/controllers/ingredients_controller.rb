@@ -11,6 +11,7 @@ class IngredientsController < ApplicationController
 
     def new
         @ingredients = @recipe.ingredients.build
+        authorize @ingredients 
     end
 
     def edit
@@ -18,6 +19,7 @@ class IngredientsController < ApplicationController
 
     def create
         @ingredients = @recipe.ingredients.build(ingredients_params)
+        authorize @ingredients
 
         respond_to do |format|
             if @ingredients.save
