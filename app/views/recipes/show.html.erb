@@ -1,14 +1,17 @@
-<h1>Recipe Details </h1>
-<% if @recipe.user.id == current_user.id %>
-    <%= link_to 'Edit', edit_recipe_url(@recipe.id) %>
-<% end %>
-<br>
-<%= link_to 'See All Recipes', root_path %>
+
+
+<%= link_to '< Back to all recipes', root_path %>
+<h3 class="text-center">Recipe details</h3>
+<h1 class="text-center"> <%= @recipe.title %></h1>
+<div class="d-flex mb-4">
+    <% if @recipe.user.id == current_user.id %>
+        <%= link_to 'Edit', edit_recipe_url(@recipe.id), class: "btn btn-primary d-inline-block" %>
+    <% end %>
+</div>
 <div class="card">
-  <h5 class="card-header">Title: <%= @recipe.title %></h5>
   <div class="card-body">
-    <h2 class="card-title">Difficulty: <%= @recipe.difficulty  %></h2>
-    <p class="card-text">Description: <%= @recipe.descriptions %></p>
+    <h2 class="card-title">Description: <%= @recipe.difficulty  %></h2>
+    <p class="card-text">Difficulty <%= @recipe.descriptions %></p>
 
     <h2 class="card-title">Ingredients</h2>
     <% @recipe&.ingredients.each do |ingredient|  %>
@@ -16,11 +19,10 @@
         <p>Amount: <%= ingredient.amount  %></p>
     <% end %>
     <br>
-    <a href="#" class="btn btn-primary">Time: <%= @recipe.time %></a>
-  </div>
-</div>
+    <a href="#" >Time: <%= @recipe.time %></a>
+    <hr>
 
-<%= link_to 'Add Ingredients', new_recipe_ingredient_path(@recipe.id) %>
+    <%= link_to 'Add Ingredients', new_recipe_ingredient_path(@recipe.id), class: "btn btn-outline-primary mb-4" %>
 
 <% if can_add_rating?  %>
     <div class="form-group">
@@ -39,3 +41,7 @@
 <% end %>
 
 <%= render partial: '/common/recipe_ratings_list', locals: {recipe: @recipe} %>
+  </div>
+</div>
+
+
