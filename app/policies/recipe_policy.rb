@@ -7,15 +7,23 @@ class RecipePolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    create?
+  end
+
   def create?
-    true
+    !@user.nil?
+  end
+
+  def edit?
+    update?
   end
 
   def update?
-    true
+    @record.user_id == @user.id
   end
 
   def delete?
-    true
+    @record.user_id == @user.id
   end
 end

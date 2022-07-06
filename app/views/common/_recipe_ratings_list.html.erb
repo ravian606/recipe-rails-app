@@ -1,0 +1,18 @@
+<div>
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+        <th scope="col">Rating</th>
+        <th scope="col">Given By</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @recipe&.ratings&.each_with_index do |rating, index| %>
+            <tr>
+                <td><%= rating.score %></td>
+                <td><%= rating.user.email %></td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

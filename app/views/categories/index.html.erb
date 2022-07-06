@@ -1,0 +1,18 @@
+<%= link_to 'Add Category', new_category_path  %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @category&.each_with_index do |category, index| %>
+        <tr>
+            <td><%= index %></td>
+            <td><%= category.description %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

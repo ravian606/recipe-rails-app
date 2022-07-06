@@ -1,0 +1,38 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Time</th>
+      <th scope="col">Difficulty</th>
+      <th scope="col">Posted By</th>
+      <th scope="col">Show</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Update</th>
+      <th scope="col">Total Ratings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes&.each_with_index do |recipe, index| %>
+        <tr>
+            <td><%= index %></td>
+            <td><%= recipe.title %></td>
+            <td><%= recipe.descriptions %></td>
+            <td><%= recipe.time %></td>
+            <td><%= recipe.difficulty %></td>
+            <td><%= recipe.user.email %></td>
+            <td><%= link_to 'Show', recipe_path(recipe.id) %></td>
+            <% if current_user == recipe.user %>
+                <td><%= link_to 'Delete', recipe_path(recipe.id),method: :delete %></td>
+                <td><%= link_to 'Update', edit_recipe_url(recipe.id) %></td>
+            <% else %>
+                <td></td>
+                <td></td>
+            <% end %>
+            <td><%= link_to "#{recipe.ratings.count}", recipe_ratings_path(recipe.id) %></td>
+        </tr>
+
+    <% end %>
+  </tbody>
+</table>
